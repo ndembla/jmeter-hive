@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="2.9" jmeter="3.0 r1743807">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="JPMC" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="SSB" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <stringProp name="TestPlan.user_define_classpath">/Users/ndembla/apache-jmeter-3.0</stringProp>
+      <stringProp name="TestPlan.user_define_classpath">./jdbc-binaries/2.1.0-SNAPSHOT/hive-jdbc-2.2.0-SNAPSHOT-standalone.jar,/home/ndembla/jmeter/lib</stringProp>
     </TestPlan>
     <hashTree>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
@@ -93,7 +93,19 @@
         <boolProp name="keepAlive">true</boolProp>
         <stringProp name="connectionAge">5000000</stringProp>
         <stringProp name="checkQuery"></stringProp>
-        <stringProp name="dbUrl">jdbc:hive2://localhost:10007/tpcds_bin_partitioned_orc_10000?hive.exec.orc.split.strategy=BI</stringProp>
+      <!-- semijoin disabled -->
+      <!--
+        <stringProp name="dbUrl">jdbc:hive2://cn105-10.l42scl.hortonworks.com:10010/tpcds_bin_partitioned_newschema_orc_10000?hive.exec.orc.split.strategy=BI;hive.tez.dynamic.semijoin.reduction=false;hive.auto.convert.join.hashtable.max.entries=40000000;hive.tez.bigtable.minsize.semijoin.reduction=1000000000;hive.tez.max.bloom.filter.entries=20000000</stringProp>
+      -->
+      <!-- semijoin enabled -->
+        <stringProp name="dbUrl">jdbc:hive2://cn105-10.l42scl.hortonworks.com:10010/tpcds_bin_partitioned_newschema_orc_10000?hive.exec.orc.split.strategy=BI;hive.llap.execution.mode=none;hive.tez.dynamic.semijoin.reduction=true;hive.auto.convert.join.hashtable.max.entries=40000000;hive.tez.bigtable.minsize.semijoin.reduction=1000000000;hive.tez.max.bloom.filter.entries=20000000</stringProp>
+      <!-- semijoin enabled, with ndv/join settings -->
+      <!--
+        <stringProp name="dbUrl">jdbc:hive2://cn105-10.l42scl.hortonworks.com:10010/tpcds_bin_partitioned_newschema_orc_10000?hive.exec.orc.split.strategy=BI;hive.tez.dynamic.semijoin.reduction=true;hive.auto.convert.join.hashtable.max.entries=40000000;hive.tez.bigtable.minsize.semijoin.reduction=1000000000;hive.stats.ndv.tuner=0.5;hive.stats.correlated.join.keys=true;hive.tez.max.bloom.filter.entries=20000000;hive.metastore.aggregate.stats.cache.enabled=false</stringProp>
+      -->
+        <!--stringProp name="dbUrl">jdbc:hive2://cn105-10.l42scl.hortonworks.com:10007/tpcds_bin_partitioned_newschema_orc_10000?hive.exec.orc.split.strategy=BI;hive.tez.dynamic.semijoin.reduction=true;hive.auto.convert.join.hashtable.max.entries=40000000;hive.auto.convert.join.noconditionaltask.size=45769803770</stringProp-->
+        <!--stringProp name="dbUrl">jdbc:hive2://cn105-10.l42scl.hortonworks.com:10010/tpcds_bin_partitioned_newschema_orc_1000?hive.exec.orc.split.strategy=BI;hive.tez.dynamic.semijoin.reduction=false</stringProp-->
+        <!--stringProp name="dbUrl">jdbc:hive2://cn105-10.l42scl.hortonworks.com:2181/tpcds_bin_partitioned_orc_1000;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2_minmax?hive.tez.dynamic.semijoin.reduction=false;hive.exec.orc.split.strategy=BI</stringProp-->
         <stringProp name="driver">org.apache.hive.jdbc.HiveDriver</stringProp>
         <stringProp name="username">hive</stringProp>
         <stringProp name="password">hive</stringProp>
