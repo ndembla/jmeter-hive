@@ -5,6 +5,7 @@ Steps:
 
 Example:
       <stringProp name="TestPlan.user_define_classpath">./jdbc-binaries/hive-jdbc-2.1.0-SNAPSHOT-standalone.jar,/home/ndembla/jmeter/lib</stringProp>
+      
 4. Change the following in the jmx file based on your setup
 
 	Add your jdbc url to this property
