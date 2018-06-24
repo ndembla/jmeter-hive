@@ -13,4 +13,4 @@ Example:
 5. Set Jmeter heapsize to prevent jmeter crashing on queries returning large resultsets
 export _JAVA_OPTIONS="-Djava.awt.headless=true -Xmx8192m"
 6. Run jmeter -n -t llap-test.jmx. Look at jmeter.log for any errors reported.
-
+7. Run "python report_2.py  raw_llap_1468573258.xml > results.csv" to get a csv format of queries and 4 runs of runtimes.
