@@ -12,7 +12,7 @@
     </TestPlan>
     <hashTree>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
-        <stringProp name="filename">queries99-4-hdp3.csv</stringProp>
+        <stringProp name="filename">queries99-4.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">queryId,query</stringProp>
         <stringProp name="delimiter">^</stringProp>
@@ -40,7 +40,8 @@
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="${queryId}" enabled="true">
           <stringProp name="dataSource">hiveConnection</stringProp>
           <stringProp name="queryType">Select Statement</stringProp>
-          <stringProp name="query">${query}</stringProp>
+          <stringProp name="query">-- ${queryId}
+${query}</stringProp>
           <stringProp name="queryArguments"></stringProp>
           <stringProp name="queryArgumentsTypes"></stringProp>
           <stringProp name="variableNames"></stringProp>
@@ -93,7 +94,8 @@
         <boolProp name="keepAlive">true</boolProp>
         <stringProp name="connectionAge">5000000</stringProp>
         <stringProp name="checkQuery"></stringProp>
-        <stringProp name="dbUrl">jdbc:hive2://localhost:10007/tpcds_bin_partitioned_orc_10000?hive.exec.orc.split.strategy=BI;hive.stats.fetch.bitvector=true;hive.query.results.cache.enabled=false;hive.auto.convert.join.shuffle.max.size=10000000000;hive.tez.cartesian-product.enabled=true;hive.materializedview.rewriting=false;hive.auto.convert.join.noconditionaltask.size=1145044992;hive.llap.mapjoin.memory.oversubscribe.factor=0.3</stringProp>
+        <!--stringProp name="dbUrl">jdbc:hive2://ctr-e138-1518143905142-420129-01-000004.hwx.site:2181,ctr-e138-1518143905142-420129-01-000002.hwx.site:2181,ctr-e138-1518143905142-420129-01-000003.hwx.site:2181/tpcds_bin_partitioned_orc_10000;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2?hive.exec.orc.split.strategy=BI;hive.stats.fetch.bitvector=true;hive.query.results.cache.enabled=false;hive.auto.convert.join.shuffle.max.size=10000000000;hive.tez.cartesian-product.enabled=true;hive.materializedview.rewriting=true;hive.auto.convert.join.noconditionaltask.size=1145044992;hive.llap.memory.oversubscription.max.executors.per.query=8;hive.llap.mapjoin.memory.oversubscribe.factor=0.3;tez.runtime.final-merge.in.output=true;hive.hashtable.key.count.adjustment=1.0;hive.optimize.bucketmapjoin=false;hive.convert.join.bucket.mapjoin.tez=false;hive.explain.user=false;hive.materializedview.rewriting=false;hive.stats.filter.in.min.ratio=0</stringProp-->
+        <stringProp name="dbUrl">jdbc:hive2://localhost:10007/tpcds_bin_partitioned_orc_10000?hive.exec.orc.split.strategy=BI;hive.stats.fetch.bitvector=true;hive.query.results.cache.enabled=false;hive.auto.convert.join.shuffle.max.size=10000000000;hive.tez.cartesian-product.enabled=true;hive.materializedview.rewriting=false;hive.auto.convert.join.noconditionaltask.size=1145044992;hive.llap.memory.oversubscription.max.executors.per.query=8;hive.llap.mapjoin.memory.oversubscribe.factor=0.3;tez.runtime.final-merge.in.output=true;hive.hashtable.key.count.adjustment=1.0;hive.optimize.bucketmapjoin=false;hive.convert.join.bucket.mapjoin.tez=false;hive.cbo.stats.correlated.multi.key.joins=true;hive.tez.dynamic.semijoin.reduction.for.mapjoin=false;hive.stats.filter.in.min.ratio=0;hive.explain.user=false</stringProp>
         <stringProp name="driver">org.apache.hive.jdbc.HiveDriver</stringProp>
         <stringProp name="username">hive</stringProp>
         <stringProp name="password">hive</stringProp>
